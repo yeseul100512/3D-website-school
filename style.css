@@ -9,6 +9,7 @@
   --accent: #ff6a3d;
   --accent-dim: rgba(255, 106, 61, 0.35);
   --status-building: #f2b94c;
+  --status-ready: #4ade80;
   --status-empty: #4a5157;
 
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
@@ -113,6 +114,12 @@ main {
   background: var(--status-building);
   box-shadow: 0 0 6px var(--status-building);
   animation: pulse 2.4s ease-in-out infinite;
+}
+
+.status-dot--ready {
+  background: var(--status-ready);
+  box-shadow: 0 0 6px var(--status-ready);
+  animation: none;
 }
 
 .status-dot--empty {
