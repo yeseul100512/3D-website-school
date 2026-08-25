@@ -1,32 +1,24 @@
-# BENCH
+# BENCH — 학교용 (bench-school)
 
-3D 프린팅 도구들을 한 사이트에서 골라 쓸 수 있게 모아둔 페이지입니다.
-
-## 구조
+3D 프린팅 도구 모음의 **학교용** 배포본입니다. 한국어 전용이며 Sindoh 3DWOX1 / 1X / 7X 프로필이 저장되어 있습니다. 다른 프린터를 쓸 때는 프린터 선택에서 "직접 입력 — 다른 프린터"를 고르고 베드 가로·세로·최대 높이를 mm로 입력하세요.
 
 ```
-index.html      메인 페이지 (도구 목록)
-style.css       전체 스타일
-script.js       마지막 업데이트 날짜 표시용 스크립트
-tools/          도구별 폴더
+index.html      대시보드 (단일 파일, 오프라인 동작)
+tools/          도구별 폴더 — 원본 저장소에서 복사해 넣으세요
 ```
 
-## 새 도구 추가하는 법
+## GitHub Pages로 올리기
 
-1. `tools/` 아래에 도구 이름으로 폴더를 만듭니다. 예: `tools/gcode-merger/`
-2. 그 폴더 안에 도구 자체의 `index.html`을 넣습니다. (파이썬으로 만든 도구라면 자바스크립트로 옮기거나, Pyodide로 감싼 버전을 넣습니다.)
-3. `index.html`(메인 페이지)의 `tool-grid` 안에 카드 하나를 복사해서 다음을 채웁니다.
-   - `href`: 도구 폴더 경로
-   - 제목, 설명, 하단 메타 정보 한 줄
-   - 도구가 실제로 작동하면 `data-status="building"`을 `data-status="ready"`로 바꾸고, `style.css`에 상태 색을 하나 추가합니다.
-4. 빈 카드(`+ 새 도구 추가`)는 항상 맨 뒤에 남겨두면 다음에 추가할 위치를 바로 알 수 있습니다.
+1. GitHub에서 새 저장소 `bench-school`을 만듭니다 (Private 권장).
+2. 이 폴더의 `index.html`을 저장소 루트에 올립니다.
+3. 원본 저장소(`3D-website`)의 `tools/` 폴더를 그대로 복사해 같은 루트에 넣습니다.
+4. Settings → Pages → Source: `Deploy from a branch`, Branch: `main` / `(root)` → Save.
+5. 몇 분 뒤 `https://<계정>.github.io/bench-school/` 에서 열립니다.
 
-## 로컬에서 확인하기
+## 도구 링크 주소 바꾸기
 
-폴더 안에서 `index.html`을 브라우저로 그냥 열어도 되고, 터미널에서 아래처럼 실행해도 됩니다.
+`index.html` 안의 아래 한 줄이 도구 페이지의 기준 주소입니다. 3번에서 `tools/`를 같은 저장소에 넣었다면 상대 경로로 바꾸세요.
 
+```js
+const SITE = 'https://yeseul100512.github.io/3D-website/';   // → './'
 ```
-python -m http.server 8000
-```
-
-그 다음 `http://localhost:8000` 접속.
